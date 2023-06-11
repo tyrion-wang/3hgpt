@@ -3,4 +3,5 @@ WORKDIR /app/
 RUN pip install --upgrade pip
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-CMD gunicorn -w 10 --threads=2 main:app
+#CMD gunicorn -w 10 --threads=2 main:app
+CMD gunicorn 3hgpt.wsgi
