@@ -1,6 +1,7 @@
 #RUN pip install --upgrade pip
 FROM python:3.10.0-slim
 WORKDIR /app
+RUN pip install --upgrade pip
 COPY requirements.txt ./
 RUN echo 'we are running some # of cool things'
 RUN pip install -r requirements.txt
