@@ -20,9 +20,6 @@ def create_app(config_class=Config):
     from app.questions import bp as questions_bp
     app.register_blueprint(questions_bp, url_prefix='/questions')
 
-    # @app.route('/')
-    # def index():
-    #    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
     @app.route('/test/')
     def test_page():
