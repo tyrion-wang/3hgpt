@@ -8,21 +8,21 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     # Initialize Flask extensions here
-    # db.init_app(app)
+    db.init_app(app)
 
     # Register blueprints here
-    # from app.main import bp as main_bp
-    # app.register_blueprint(main_bp)
-    #
-    # from app.posts import bp as posts_bp
-    # app.register_blueprint(posts_bp, url_prefix='/posts')
-    #
-    # from app.questions import bp as questions_bp
-    # app.register_blueprint(questions_bp, url_prefix='/questions')
+    from app.main import bp as main_bp
+    app.register_blueprint(main_bp)
+    
+    from app.posts import bp as posts_bp
+    app.register_blueprint(posts_bp, url_prefix='/posts')
+    
+    from app.questions import bp as questions_bp
+    app.register_blueprint(questions_bp, url_prefix='/questions')
 
-    @app.route('/')
-    def index():
-        return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+    # @app.route('/')
+    # def index():
+    #    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
     @app.route('/test/')
     def test_page():
