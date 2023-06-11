@@ -10,7 +10,6 @@ Werkzeug
 # Base
 ## DB
 Flask-SQLAlchemy
-mysqlclient
-pymysql
+
 
 # AI
