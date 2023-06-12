@@ -11,7 +11,9 @@ Werkzeug
 # Base
 ## DB
 Flask-SQLAlchemy
+flask-mysqldb
 mysqlclient
 pymysql
+#需要：brew install mysql-client
 
 # AI
