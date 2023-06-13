@@ -1,0 +1,2 @@
+var historyMessage 
+var currentMessage 
