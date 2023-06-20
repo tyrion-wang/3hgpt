@@ -1,2 +1,2 @@
-var historyMessage 
-var currentMessage 
+# var historyMessage
+# var currentMessage

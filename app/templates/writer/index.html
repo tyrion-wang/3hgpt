@@ -1,7 +1,79 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="content">
-        <h2>This is the writer blueprint</h2>
+<div class="row mt-5">
+        <div class="col text-center">
+            <h1>AI Writer</h1>
+        </div>
     </div>
+
+    <div class="row mt-5">
+        <form id="input-form" method="POST" >
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="form-floating">
+                        <textarea class="form-control" name="input_text" placeholder="请输入需要加工的文字" id="input_text" style="height: 200px">ChatGPT（全名：Chat Generative Pre - trained Transformer），美国OpenAI[1]研发的聊天机器人程序[12]  ，于2022年11月30日发布[2 - 3]  。ChatGPT是人工智能技术驱动的自然语言处理工具，它能够通过理解和学习人类的语言来进行对话，还能根据聊天的上下文进行互动，真正像人类一样来聊天交流，甚至能完成撰写邮件、视频脚本、文案、翻译、代码，写论文[21]等任务。</textarea>
+                        <label for="text">请输入需要加工的文字!</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <select class="form-select" id="similarity">
+                            <option value="0.9">相似度90%</option>
+                            <option value="0.8">相似度80%</option>
+                            <option value="0.7">相似度70%</option>
+                            <option value="0.6">相似度60%</option>
+                            <option value="0.5">相似度50%</option>
+                        </select>
+                        <label for="similarity">选择转写相似度</label>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <button type="button" class="btn btn-primary" id="write-btn">转写</button>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="转写结果" id="output_text" readonly style="height: 200px"></textarea>
+                        <label for="transcription">转写结果</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" onclick="copyToClipboard()">自动复制</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+<script type="text/javascript" charset="utf-8">
+    $("#write-btn").click(function () {
+        console.log("write-btn click")
+        var text = $("#input_text").val();
+        console.log(text);
+        if (text == "") {
+            alert("请输入内容");
+            return;
+        }
+
+        source = new EventSource("/writer/returnMessage?send_message="+text);
+        source.onmessage = function(event) {
+            if (event.data == "[DONE]"){
+                source.close()
+            }else {
+                document.getElementById("output_text").innerHTML += event.data;
+            }
+        };
+    })
+
+</script>
 {% endblock %}

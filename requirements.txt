@@ -1,7 +1,6 @@
 # Railway
 click
 Flask
-
 gunicorn
 itsdangerous
 Jinja2
@@ -17,3 +16,6 @@ pymysql
 #Need：brew install mysql-client
 
 # AI
+openai
+
+#other
